@@ -9,17 +9,36 @@ import Foundation
 
 class DashboardViewModel: ObservableObject {
     @Published var popularMovies: [Media]
-    private var tmdb: TMDB
+    private var genres: [Genre]
+    private let tmdb: TMDB
     
     init(tmdb: TMDB) {
-        popularMovies = []
+        popularMovies = []; genres = []
         self.tmdb = tmdb
     }
     
-    func fetchPopularMovies() async throws {
-        let movies = try await tmdb.fetchPopularMovies()
+    func fetchData() async throws {
+        async let genresTask = try fetchGenres()
+        async let moviesTask = try fetchPopularMovies()
+        
+        let (genres, movies) = try await (genresTask, moviesTask)
         await MainActor.run {
-            popularMovies = movies
+            self.genres = genres
+            self.popularMovies = movies
         }
     }
+    
+    func fetchPopularMovies() async throws -> [Media] {
+        let movies = try await tmdb.fetchPopularMovies()
+        return movies
+    }
+    
+    func fetchGenres() async throws -> [Genre] {
+        let genres = try await tmdb.fetchGenres()
+        return genres
+    }
+    
+//    func fetchGenre(byId id: Int) -> Genre {
+//        genres.first { $0.id == id }!
+//    }
 }

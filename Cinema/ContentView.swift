@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
+    @Namespace private var animation
     var body: some View {
-        DashboardView()
+        DashboardView(animation: animation)
     }
 }
 

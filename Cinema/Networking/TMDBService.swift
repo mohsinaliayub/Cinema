@@ -11,6 +11,7 @@ protocol TMDB {
     typealias MediaWithPageToQuery = (pageToQueryNext: Int?, mediaSummaries: [Media])
     
     func fetchPopularMovies() async throws -> [Media]
+    func fetchGenres() async throws -> [Genre]
 }
 
 public class TMDBService: TMDB {
@@ -21,6 +22,18 @@ public class TMDBService: TMDB {
         
         let mediaWithPageToQuery = try await fetchMediaResult(from: url)
         return mediaWithPageToQuery.mediaSummaries
+    }
+    
+    func fetchGenres() async throws -> [Genre] {
+        guard let url = url(with: "/genre/movie/list")?.url else {
+            throw NetworkRequestError.urlError
+        }
+        
+        let (data, response) = try await URLSession.shared.data(from: url)
+        _ = try responseIsSuccessful(response)
+        
+        let genres = try JSONDecoder().decode(GenreResult.self, from: data).genres
+        return genres
     }
     
     private func fetchMediaResult(from url: URL?) async throws -> MediaWithPageToQuery {
