@@ -38,7 +38,19 @@ class DashboardViewModel: ObservableObject {
         return genres
     }
     
-//    func fetchGenre(byId id: Int) -> Genre {
-//        genres.first { $0.id == id }!
-//    }
+    func fetchGenres(for media: Media) -> [Genre] {
+        guard !genres.isEmpty else { return [] }
+        
+        var genres = [Genre]()
+        media.genreIds.forEach { genreId in
+            if let genre = fetchGenre(byId: genreId) {
+                genres.append(genre)
+            }
+        }
+        return genres
+    }
+    
+    private func fetchGenre(byId id: Int) -> Genre? {
+        genres.first { $0.id == id }
+    }
 }

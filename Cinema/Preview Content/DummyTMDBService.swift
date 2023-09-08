@@ -13,14 +13,16 @@ class DummyTMDBService: TMDB {
     }
     
     func fetchGenres() async throws -> [Genre] {
-        [
-            Genre(id: 28, name: "Action"),
-            Genre(id: 12, name: "Adventure"),
-            Genre(id: 16, name: "Animation"),
-            Genre(id: 35, name: "Comedy"),
-            Genre(id: 80, name: "Crime")
-        ]
+        genres
     }
+    
+    var genres: [Genre] = [
+        Genre(id: 28, name: "Action"),
+        Genre(id: 12, name: "Adventure"),
+        Genre(id: 16, name: "Animation"),
+        Genre(id: 35, name: "Comedy"),
+        Genre(id: 80, name: "Crime")
+    ]
     
     var media: [Media] = [
         Media(id: 884605,

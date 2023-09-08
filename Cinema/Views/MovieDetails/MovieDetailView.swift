@@ -7,45 +7,52 @@
 
 import SwiftUI
 import NukeUI
+import SwiftUIDelayedGesture
 
 struct MovieDetailView: View {
     let movie: Media
     @Binding var showDetail: Bool
     var animation: Namespace.ID
     
+    @State private var scale: CGFloat = 1
+    
     var body: some View {
-        GeometryReader { geometry in
-            let size = geometry.size
-            ZStack(alignment: .top) {
-                ScrollView(showsIndicators: false) {
-                    VStack {
-                        LazyImage(source: movie.backdropURL)
-                            .matchedGeometryEffect(id: movie.id, in: animation)
-                            .frame(height: 360)
-                            .overlay {
-                                Rectangle()
-                                    .fill(Color.secondary.opacity(0.4))
-                            }
-                    }
-                }
-                .edgesIgnoringSafeArea(.all)
-                
-                HStack {
-                    Spacer()
-                    Button(action: {
-                        withAnimation(.interactiveSpring(response: 0.5, dampingFraction: 0.8, blendDuration: 0.8)) {
-                            showDetail = false
+        ScrollView {
+            VStack(alignment: .leading, spacing: 8) {
+                ZStack(alignment: .top) {
+                    LazyImage(source: movie.backdropURL)
+                        .matchedGeometryEffect(id: movie.id, in: animation)
+                        .frame(height: 360)
+                        .overlay {
+                            Rectangle().fill(Color.black.opacity(0.33))
                         }
-                    }) {
-                        Image(systemName: "xmark.circle.fill")
-                            .font(.largeTitle)
-                            .foregroundColor(.white)
+                    
+                    HStack {
+                        TextWithCircleOverlay(text: "\(movie.imdbRating)")
+                            .matchedGeometryEffect(id: "\(movie.id)RATING", in: animation)
+                        Spacer()
+                        Button(action: {
+                            withAnimation(.interactiveSpring(response: 0.5, dampingFraction: 0.8, blendDuration: 0.8)) {
+                                showDetail = false
+                            }
+                        }) {
+                            Image(systemName: "xmark.circle.fill")
+                                .font(.largeTitle)
+                                .foregroundColor(.white)
+                        }
                     }
+                    .padding(.horizontal)
+                    .padding(.top, 48)
                 }
-                .padding(.horizontal)
+                
+                Text(movie.title)
+                    .font(.title)
+                    .padding(.horizontal)
+                
             }
-            
         }
+        .scaleEffect(scale)
+        .edgesIgnoringSafeArea(.all)
     }
 }
 

@@ -26,6 +26,9 @@
 		684A125A2AA9D45E00F5500F /* DummyTMDBService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684A12592AA9D45E00F5500F /* DummyTMDBService.swift */; };
 		684A126B2AA9E82700F5500F /* NukeUI in Frameworks */ = {isa = PBXBuildFile; productRef = 684A126A2AA9E82700F5500F /* NukeUI */; };
 		684A126E2AA9EDB400F5500F /* MovieDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684A126D2AA9EDB400F5500F /* MovieDetailView.swift */; };
+		684A12732AAA36BD00F5500F /* SwiftUIDelayedGesture in Frameworks */ = {isa = PBXBuildFile; productRef = 684A12722AAA36BD00F5500F /* SwiftUIDelayedGesture */; };
+		684A12752AAB1F2600F5500F /* TextWithCircleOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684A12742AAB1F2600F5500F /* TextWithCircleOverlay.swift */; };
+		684A12772AAB212E00F5500F /* GenresView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684A12762AAB212E00F5500F /* GenresView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +51,8 @@
 		684A12572AA9D37100F5500F /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
 		684A12592AA9D45E00F5500F /* DummyTMDBService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyTMDBService.swift; sourceTree = "<group>"; };
 		684A126D2AA9EDB400F5500F /* MovieDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailView.swift; sourceTree = "<group>"; };
+		684A12742AAB1F2600F5500F /* TextWithCircleOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextWithCircleOverlay.swift; sourceTree = "<group>"; };
+		684A12762AAB212E00F5500F /* GenresView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +61,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				684A126B2AA9E82700F5500F /* NukeUI in Frameworks */,
+				684A12732AAA36BD00F5500F /* SwiftUIDelayedGesture in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -163,6 +169,8 @@
 		684A125D2AA9D78300F5500F /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				684A12742AAB1F2600F5500F /* TextWithCircleOverlay.swift */,
+				684A12762AAB212E00F5500F /* GenresView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -193,6 +201,7 @@
 			name = Cinema;
 			packageProductDependencies = (
 				684A126A2AA9E82700F5500F /* NukeUI */,
+				684A12722AAA36BD00F5500F /* SwiftUIDelayedGesture */,
 			);
 			productName = Cinema;
 			productReference = 684A12292AA9C80100F5500F /* Cinema.app */;
@@ -224,6 +233,7 @@
 			mainGroup = 684A12202AA9C80100F5500F;
 			packageReferences = (
 				684A12692AA9E82700F5500F /* XCRemoteSwiftPackageReference "NukeUI" */,
+				684A12712AAA36BD00F5500F /* XCRemoteSwiftPackageReference "SwiftUIDelayedGesture" */,
 			);
 			productRefGroup = 684A122A2AA9C80100F5500F /* Products */;
 			projectDirPath = "";
@@ -254,12 +264,14 @@
 				684A125A2AA9D45E00F5500F /* DummyTMDBService.swift in Sources */,
 				684A12542AA9D21800F5500F /* TMDBService.swift in Sources */,
 				684A122F2AA9C80100F5500F /* ContentView.swift in Sources */,
+				684A12752AAB1F2600F5500F /* TextWithCircleOverlay.swift in Sources */,
 				684A122D2AA9C80100F5500F /* CinemaApp.swift in Sources */,
 				684A12462AA9CF7E00F5500F /* Media.swift in Sources */,
 				684A12512AA9D1E800F5500F /* NetworkRequestError.swift in Sources */,
 				684A12442AA9CA4900F5500F /* URL+Extensions.swift in Sources */,
 				684A124E2AA9D0B600F5500F /* Movie.swift in Sources */,
 				684A126E2AA9EDB400F5500F /* MovieDetailView.swift in Sources */,
+				684A12772AAB212E00F5500F /* GenresView.swift in Sources */,
 				684A124A2AA9CFD500F5500F /* MediaType.swift in Sources */,
 				684A124C2AA9CFF300F5500F /* MediaResult.swift in Sources */,
 				684A123F2AA9C8AC00F5500F /* Date+Extensions.swift in Sources */,
@@ -477,6 +489,14 @@
 				minimumVersion = 0.8.3;
 			};
 		};
+		684A12712AAA36BD00F5500F /* XCRemoteSwiftPackageReference "SwiftUIDelayedGesture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ciaranrobrien/SwiftUIDelayedGesture";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -484,6 +504,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 684A12692AA9E82700F5500F /* XCRemoteSwiftPackageReference "NukeUI" */;
 			productName = NukeUI;
+		};
+		684A12722AAA36BD00F5500F /* SwiftUIDelayedGesture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 684A12712AAA36BD00F5500F /* XCRemoteSwiftPackageReference "SwiftUIDelayedGesture" */;
+			productName = SwiftUIDelayedGesture;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

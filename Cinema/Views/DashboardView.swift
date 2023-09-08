@@ -24,7 +24,7 @@ struct DashboardView: View {
                                 selectedMedia = media; showDetail = true
                             }
                         }
-                        .padding(.bottom)
+                        .padding(.bottom, 8)
                 }
             }
             .opacity(showDetail ? 0 : 1)
@@ -47,15 +47,37 @@ struct DashboardView: View {
     func mediaCard(_ media: Media) -> some View {
         ZStack {
             if !showDetail {
-                LazyImage(source: media.posterURL)
-                    .matchedGeometryEffect(id: media.id, in: animation)
-                    .overlay {
-                        Rectangle()
-                            .fill(Color.secondary.opacity(0.8))
+                ZStack(alignment: .topLeading) {
+                    LazyImage(source: media.backdropURL)
+                        .matchedGeometryEffect(id: media.id, in: animation)
+                        .overlay {
+                            Rectangle()
+                                .fill(Color.black.opacity(0.55))
+                        }
+                    VStack {
+                        HStack {
+                            TextWithCircleOverlay(text: "\(media.imdbRating)")
+                                .matchedGeometryEffect(id: "\(media.id)RATING", in: animation)
+                            Spacer()
+                        }
+                        VStack(spacing: 16) {
+                            Text(media.title)
+                                .font(.title.bold())
+                                .multilineTextAlignment(.center)
+                            Text(media.releaseDate(withFormat: "MMM YYYY") ?? "")
+                                .fontWeight(.thin)
+                        }
+                        .padding(.top, 48)
+                        Spacer()
+                        GenresView(genres: model.fetchGenres(for: media))
+                            .padding(.leading, 8)
                     }
+                    .foregroundStyle(.white)
+                    .padding()
+                }
             }
         }
-        .frame(width: 340, height: 500)
+        .frame(width: 340, height: 450)
         .cornerRadius(15)
     }
 }
