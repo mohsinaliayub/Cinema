@@ -20,4 +20,5 @@ public enum Constants {
 
 public enum AppColors {
     public static let castBackground = Color("swatch3")
+    public static let reviewCardBackground = Color("swatch6")
 }

@@ -13,6 +13,7 @@ protocol TMDB {
     func fetchPopularMovies() async throws -> [Media]
     func fetchGenres() async throws -> [Genre]
     func fetchCast(for movieId: MediaID) async throws -> [Cast]
+    func fetchReviews(for movieId: MediaID) async throws -> [Review]
 }
 
 public class TMDBService: TMDB {
@@ -47,6 +48,18 @@ public class TMDBService: TMDB {
         
         let credits = try JSONDecoder().decode(Credits.self, from: data)
         return credits.cast
+    }
+    
+    func fetchReviews(for movieId: MediaID) async throws -> [Review] {
+        guard let url = url(with: "/movie/\(movieId)/reviews")?.url else {
+            throw NetworkRequestError.urlError
+        }
+        
+        let (data, response) = try await URLSession.shared.data(from: url)
+        _ = try responseIsSuccessful(response)
+        
+        let reviews = try JSONDecoder().decode(ReviewResult.self, from: data).reviews
+        return reviews
     }
     
     private func fetchMediaResult(from url: URL?) async throws -> MediaWithPageToQuery {
