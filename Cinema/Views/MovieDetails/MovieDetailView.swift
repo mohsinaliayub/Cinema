@@ -14,6 +14,8 @@ struct MovieDetailView: View {
     @Binding var showDetail: Bool
     var animation: Namespace.ID
     
+    @EnvironmentObject var model: MovieDetailViewModel
+    
     @State private var scale: CGFloat = 1
     
     var body: some View {
@@ -22,7 +24,7 @@ struct MovieDetailView: View {
                 ZStack(alignment: .top) {
                     LazyImage(source: movie.backdropURL)
                         .matchedGeometryEffect(id: movie.id, in: animation)
-                        .frame(height: 360)
+                        .frame(height: 450)
                         .overlay {
                             Rectangle().fill(Color.black.opacity(0.33))
                         }
@@ -45,14 +47,28 @@ struct MovieDetailView: View {
                     .padding(.top, 48)
                 }
                 
-                Text(movie.title)
-                    .font(.title)
-                    .padding(.horizontal)
+                VStack(alignment: .leading, spacing: 8) {
+                    Text("Synopsis")
+                        .font(.headline)
+                    Text(movie.overview)
+                        .font(.caption)
+                }
+                .padding(.horizontal)
+                .padding(.vertical, 8)
                 
+                CastView(cast: $model.cast)
+                    .padding(.vertical, 8)
+                    .padding(.horizontal)
+                    .background(AppColors.castBackground)
             }
         }
         .scaleEffect(scale)
         .edgesIgnoringSafeArea(.all)
+        .task {
+            do {
+                try await model.fetchData()
+            } catch { print(error.localizedDescription) }
+        }
     }
 }
 
@@ -60,5 +76,7 @@ struct MovieDetailView_Previews: PreviewProvider {
     @Namespace static var animation
     static var previews: some View {
         MovieDetailView(movie: DummyTMDBService().media[0], showDetail: .constant(true), animation: animation)
+            .environmentObject(MovieDetailViewModel(movie: DummyTMDBService().media[0],
+                                                    tmdb: DummyTMDBService()))
     }
 }

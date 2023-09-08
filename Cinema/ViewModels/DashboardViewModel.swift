@@ -10,7 +10,7 @@ import Foundation
 class DashboardViewModel: ObservableObject {
     @Published var popularMovies: [Media]
     private var genres: [Genre]
-    private let tmdb: TMDB
+    private(set) var tmdb: TMDB
     
     init(tmdb: TMDB) {
         popularMovies = []; genres = []

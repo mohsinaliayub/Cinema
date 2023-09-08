@@ -16,6 +16,18 @@ class DummyTMDBService: TMDB {
         genres
     }
     
+    func fetchCast(for movieId: MediaID) async throws -> [Cast] {
+        cast
+    }
+    
+    var cast: [Cast] = [
+        Cast(id: 72129, name: "Jennifer Lawrence", character: "Maddie Barker", order: 0, profileURLString: "/mDKMsjOMytyBiy7MHNZTa7gp7wj.jpg"),
+        Cast(id: 2914688, name: "Andrew Barth Feldman", character: "Percy Becker", order: 1, profileURLString: "/17rLE4Q4gKejJp1TsByGnzMpK00.jpg"),
+        Cast(id: 60034, name: "Laura Benanti", character: "Allison Becker", order: 2, profileURLString: "/meoraoVzlCExK6RUFX2GqVNv0vw.jpg"),
+        Cast(id: 4756, name: "Matthew Broderick", character: "Laird Becker", order: 3, profileURLString: "/2Pq8pwOX5ZFfT2p5pNLGfvUi9Pp.jpg"),
+        Cast(id: 118752, name: "Natalie Morales", character: "Sara", order: 4, profileURLString: "/faHjkHWepBM2mx8lq7kS0D3YeOE.jpg"),
+    ]
+    
     var genres: [Genre] = [
         Genre(id: 28, name: "Action"),
         Genre(id: 12, name: "Adventure"),

@@ -5,7 +5,7 @@
 //  Created by Mohsin Ali Ayub on 07.09.23.
 //
 
-import Foundation
+import SwiftUI
 
 public enum Constants {
     public enum APIConstants {
@@ -16,4 +16,8 @@ public enum Constants {
         /// Base URL for image requests.
         public static let baseURLForImages = "https://image.tmdb.org/t/p/original"
     }
+}
+
+public enum AppColors {
+    public static let castBackground = Color("swatch3")
 }

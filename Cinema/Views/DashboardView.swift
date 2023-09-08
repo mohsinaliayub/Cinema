@@ -31,6 +31,7 @@ struct DashboardView: View {
             
             if let selectedMedia, showDetail {
                 MovieDetailView(movie: selectedMedia, showDetail: $showDetail, animation: animation)
+                    .environmentObject(MovieDetailViewModel(movie: selectedMedia, tmdb: model.tmdb))
             }
         }
         .task {
