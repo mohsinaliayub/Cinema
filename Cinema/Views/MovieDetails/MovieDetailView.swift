@@ -22,12 +22,12 @@ struct MovieDetailView: View {
         ZStack(alignment: .topTrailing) {
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading, spacing: 8) {
-                    ZStack(alignment: .top) {
+                    ZStack(alignment: .topLeading) {
                         LazyImage(source: movie.backdropURL)
                             .matchedGeometryEffect(id: movie.id, in: animation)
                             .frame(height: 450)
                             .overlay {
-                                Rectangle().fill(Color.black.opacity(0.33))
+                                Rectangle().fill(Color.black.opacity(0.55))
                             }
                         
                         HStack {
@@ -37,13 +37,30 @@ struct MovieDetailView: View {
                         }
                         .padding(.horizontal)
                         .padding(.top, 48)
+                        
+                        VStack(alignment: .leading) {
+                            Spacer()
+                            Text(movie.title)
+                                .font(.title.bold())
+                                .matchedGeometryEffect(id: "\(movie.id)TITLE", in: animation)
+                                .multilineTextAlignment(.leading)
+                                .padding(.bottom)
+                                .padding(.horizontal, -8)
+                            
+                            GenresView(genres: model.genres)
+                        }
+                        .padding(.horizontal)
+                        .padding(.bottom)
+                        .foregroundColor(.white)
                     }
+                    
                     
                     VStack(alignment: .leading, spacing: 8) {
                         Text("Synopsis")
                             .font(.headline)
                         Text(movie.overview)
                             .font(.caption)
+                            .kerning(1.2)
                     }
                     .padding(.horizontal)
                     .padding(.vertical, 8)
@@ -56,16 +73,20 @@ struct MovieDetailView: View {
                         .background(AppColors.castBackground)
                     }
                     
-                    if !model.reviews.isEmpty {
-                        VStack(alignment: .leading) {
-                            Text("Reviews").font(.headline)
-                            ForEach(model.reviews) { review in
-                                ReviewInfoView(review: review)
-                            }
-                        }
-                        .frame(maxWidth: .infinity)
-                        .padding()
-                    }
+                    Spacer()
+                    
+                    // Reviews
+//                    if !model.reviews.isEmpty {
+//                        VStack(alignment: .leading) {
+//                            Text("Reviews").font(.headline)
+//                            ForEach(model.reviews) { review in
+//                                ReviewInfoView(review: review)
+//                            }
+//                        }
+//                        .frame(maxWidth: .infinity)
+//                        .padding()
+//                        .padding(.bottom)
+//                    }
                 }
             }
             

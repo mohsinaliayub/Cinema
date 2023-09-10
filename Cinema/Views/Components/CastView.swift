@@ -15,7 +15,7 @@ struct CastView: View {
         VStack(alignment: .leading) {
             Text("Cast").font(.headline)
             ScrollView(.horizontal, showsIndicators: false) {
-                HStack(alignment: .firstTextBaseline) {
+                HStack {
                     ForEach(cast) { cast in
                         VStack(alignment: .leading, spacing: 4) {
                             LazyImage(source: cast.profilePictureURL)

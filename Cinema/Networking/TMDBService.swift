@@ -10,6 +10,8 @@ import Foundation
 protocol TMDB {
     typealias MediaWithPageToQuery = (pageToQueryNext: Int?, mediaSummaries: [Media])
     
+    var genres: [Genre] { get set }
+    
     func fetchPopularMovies() async throws -> [Media]
     func fetchGenres() async throws -> [Genre]
     func fetchCast(for movieId: MediaID) async throws -> [Cast]
@@ -19,6 +21,8 @@ protocol TMDB {
 public class TMDBService: TMDB {
     typealias MediaWithPageToQuery = (pageToQueryNext: Int?, mediaSummaries: [Media])
     
+    var genres: [Genre] = []
+    
     func fetchPopularMovies() async throws -> [Media] {
         let url = url(with: "/movie/popular")?.url
         
@@ -27,6 +31,7 @@ public class TMDBService: TMDB {
     }
     
     func fetchGenres() async throws -> [Genre] {
+        guard genres.isEmpty else { return genres }
         guard let url = url(with: "/genre/movie/list")?.url else {
             throw NetworkRequestError.urlError
         }
@@ -35,6 +40,7 @@ public class TMDBService: TMDB {
         _ = try responseIsSuccessful(response)
         
         let genres = try JSONDecoder().decode(GenreResult.self, from: data).genres
+        self.genres = genres
         return genres
     }
     

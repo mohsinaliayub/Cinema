@@ -148,12 +148,9 @@
 		684A123C2AA9C89300F5500F /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				684A128A2AAB530A00F5500F /* Media */,
 				684A12812AAB3B0000F5500F /* Reviews */,
 				684A127A2AAB2EBE00F5500F /* Credits */,
-				684A12452AA9CF7E00F5500F /* Media.swift */,
-				684A12472AA9CFB000F5500F /* Genre.swift */,
-				684A12492AA9CFD500F5500F /* MediaType.swift */,
-				684A124B2AA9CFF300F5500F /* MediaResult.swift */,
 				684A124D2AA9D0B600F5500F /* Movie.swift */,
 			);
 			path = Models;
@@ -221,6 +218,17 @@
 				684A12862AAB403A00F5500F /* ReviewResult.swift */,
 			);
 			path = Reviews;
+			sourceTree = "<group>";
+		};
+		684A128A2AAB530A00F5500F /* Media */ = {
+			isa = PBXGroup;
+			children = (
+				684A12452AA9CF7E00F5500F /* Media.swift */,
+				684A12472AA9CFB000F5500F /* Genre.swift */,
+				684A12492AA9CFD500F5500F /* MediaType.swift */,
+				684A124B2AA9CFF300F5500F /* MediaResult.swift */,
+			);
+			path = Media;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

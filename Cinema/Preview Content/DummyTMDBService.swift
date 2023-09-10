@@ -8,6 +8,7 @@
 import Foundation
 
 class DummyTMDBService: TMDB {
+    
     func fetchPopularMovies() async throws -> [Media] {
         media
     }

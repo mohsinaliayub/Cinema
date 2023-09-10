@@ -64,6 +64,7 @@ struct DashboardView: View {
                         VStack(spacing: 16) {
                             Text(media.title)
                                 .font(.title.bold())
+                                .matchedGeometryEffect(id: "\(media.id)TITLE", in: animation)
                                 .multilineTextAlignment(.center)
                             Text(media.releaseDate(withFormat: "MMM YYYY") ?? "")
                                 .fontWeight(.thin)

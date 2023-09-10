@@ -9,10 +9,11 @@ import SwiftUI
 
 struct GenresView: View {
     var genres: [Genre]
+    var maximumGenresToDisplay = 2
     
     var body: some View {
         HStack {
-            ForEach(genres.prefix(2)) { genre in
+            ForEach(genres.prefix(maximumGenresToDisplay)) { genre in
                 Text(genre.name)
                     .font(.subheadline)
                     .textCase(.uppercase)
