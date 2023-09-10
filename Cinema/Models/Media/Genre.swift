@@ -17,6 +17,10 @@ public struct Genre: Identifiable {
     }
 }
 
+extension Genre: Hashable {
+    
+}
+
 extension Genre: Codable { }
 
 struct GenreResult: Codable {
