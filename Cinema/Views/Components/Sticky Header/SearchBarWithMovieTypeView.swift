@@ -10,7 +10,7 @@ import SwiftUI
 struct SearchBarWithMovieTypeView: View {
     @Binding var searchText: String
     @Binding var showSearchBar: Bool
-    @Binding var activeTab: MediaResultType?
+//    @Binding var activeTab: MediaResultType?
     var offsetY: CGFloat
     let topAreaInset: CGFloat
     var performSearch: () -> Void
@@ -56,13 +56,13 @@ struct SearchBarWithMovieTypeView: View {
                 }
 
             }
-            HStack {
-                ForEach(MediaResultType.allCases, id: \.self) { type in
-                    customButton(type: type) {
-                        
-                    }
-                }
-            }
+//            HStack {
+//                ForEach(MediaResultType.allCases, id: \.self) { type in
+//                    customButton(type: type) {
+//
+//                    }
+//                }
+//            }
             // Shrinking horizontal spacing
             .padding(.horizontal, -progress * 50)
             .padding(.top, 10)
@@ -92,52 +92,52 @@ struct SearchBarWithMovieTypeView: View {
     }
     
     // MARK:  Custom Button with Symbol
-    @ViewBuilder
-    func customButton(type: MediaResultType, onClick: @escaping () -> Void) -> some View {
-        // Fading out sooner than navigation bar animation
-        let progress = -(offsetY / 40) > 1 ? -1 : (offsetY > 0 ? 0 : (offsetY / 40))
-        Button {
-            activeTab = type
-        } label: {
-            VStack {
-                Image(systemName: type.symbolIcon)
-                    .fontWeight(.semibold)
-                    .foregroundColor(.red)
-                    .frame(width: 35, height: 35)
-                    .background {
-                        RoundedRectangle(cornerRadius: 8, style: .continuous)
-                            .fill(foregroundColor(type: type))
-                    }
-                Text(type.title)
-                    .font(.caption)
-                    .fontWeight(.semibold)
-                    .lineLimit(1)
-                    .foregroundColor(foregroundColor(type: type))
-            }
-            .frame(maxWidth: .infinity)
-            .opacity(1 + progress)
-            // Displaying alternative icon
-            .overlay {
-                Image(systemName: type.symbolIcon)
-                    .font(.title3)
-                    .fontWeight(.semibold)
-                    .foregroundColor(foregroundColor(type: type))
-                    .opacity(-progress)
-                    .offset(y: -10)
-            }
-        }
-    }
+//    @ViewBuilder
+//    func customButton(symbolIcon: String, title: String, onClick: @escaping () -> Void) -> some View {
+//        // Fading out sooner than navigation bar animation
+//        let progress = -(offsetY / 40) > 1 ? -1 : (offsetY > 0 ? 0 : (offsetY / 40))
+//        Button {
+////            activeTab = type
+//        } label: {
+//            VStack {
+//                Image(systemName: symbolIcon)
+//                    .fontWeight(.semibold)
+//                    .foregroundColor(.red)
+//                    .frame(width: 35, height: 35)
+//                    .background {
+//                        RoundedRectangle(cornerRadius: 8, style: .continuous)
+//                            .fill(foregroundColor(type: type))
+//                    }
+//                Text(title)
+//                    .font(.caption)
+//                    .fontWeight(.semibold)
+//                    .lineLimit(1)
+//                    .foregroundColor(foregroundColor(type: type))
+//            }
+//            .frame(maxWidth: .infinity)
+//            .opacity(1 + progress)
+//            // Displaying alternative icon
+//            .overlay {
+//                Image(systemName: symbolIcon)
+//                    .font(.title3)
+//                    .fontWeight(.semibold)
+//                    .foregroundColor(foregroundColor(type: type))
+//                    .opacity(-progress)
+//                    .offset(y: -10)
+//            }
+//        }
+//    }
     
-    func foregroundColor(type: MediaResultType) -> Color {
-        withAnimation(.easeInOut) {
-            activeTab == type ? .white : AppColors.castBackground.opacity(0.5)
-        }
-    }
+//    func foregroundColor(type: MediaResultType) -> Color {
+//        withAnimation(.easeInOut) {
+//            activeTab == type ? .white : AppColors.castBackground.opacity(0.5)
+//        }
+//    }
 }
 
 
-struct SearchBarWithMovieTypeView_Previews: PreviewProvider {
-    static var previews: some View {
-        SearchBarWithMovieTypeView(searchText: .constant(""), showSearchBar: .constant(false), activeTab: .constant(MediaResultType.trending), offsetY: 0, topAreaInset: 48) { }
-    }
-}
+//struct SearchBarWithMovieTypeView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SearchBarWithMovieTypeView(searchText: .constant(""), showSearchBar: .constant(false), activeTab: .constant(MediaResultType.trending), offsetY: 0, topAreaInset: 48) { }
+//    }
+//}
