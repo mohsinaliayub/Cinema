@@ -42,6 +42,7 @@
 		684A12932AAE4D0600F5500F /* SearchBarWithMovieTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684A12922AAE4D0600F5500F /* SearchBarWithMovieTypeView.swift */; };
 		684A12952AAEF47200F5500F /* OffsetKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684A12942AAEF47200F5500F /* OffsetKey.swift */; };
 		684A12972AAEFAF500F5500F /* MovieType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684A12962AAEFAF500F5500F /* MovieType.swift */; };
+		684A12992AAF13FA00F5500F /* MediaCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684A12982AAF13FA00F5500F /* MediaCard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -79,6 +80,7 @@
 		684A12922AAE4D0600F5500F /* SearchBarWithMovieTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarWithMovieTypeView.swift; sourceTree = "<group>"; };
 		684A12942AAEF47200F5500F /* OffsetKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffsetKey.swift; sourceTree = "<group>"; };
 		684A12962AAEFAF500F5500F /* MovieType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieType.swift; sourceTree = "<group>"; };
+		684A12982AAF13FA00F5500F /* MediaCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaCard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,6 +205,7 @@
 				684A12762AAB212E00F5500F /* GenresView.swift */,
 				684A127F2AAB361900F5500F /* CastView.swift */,
 				684A12882AAB41E800F5500F /* ReviewInfoView.swift */,
+				684A12982AAF13FA00F5500F /* MediaCard.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -344,6 +347,7 @@
 				684A12792AAB2DEF00F5500F /* MovieDetailViewModel.swift in Sources */,
 				684A12542AA9D21800F5500F /* TMDBService.swift in Sources */,
 				684A122F2AA9C80100F5500F /* ContentView.swift in Sources */,
+				684A12992AAF13FA00F5500F /* MediaCard.swift in Sources */,
 				684A12752AAB1F2600F5500F /* TextWithCircleOverlay.swift in Sources */,
 				684A12802AAB361900F5500F /* CastView.swift in Sources */,
 				684A12952AAEF47200F5500F /* OffsetKey.swift in Sources */,

@@ -16,8 +16,6 @@ struct MovieDetailView: View {
     
     @EnvironmentObject var model: MovieDetailViewModel
     
-    @State private var scale: CGFloat = 1
-    
     var body: some View {
         ZStack(alignment: .topTrailing) {
             ScrollView(showsIndicators: false) {
@@ -74,19 +72,6 @@ struct MovieDetailView: View {
                     }
                     
                     Spacer()
-                    
-                    // Reviews
-//                    if !model.reviews.isEmpty {
-//                        VStack(alignment: .leading) {
-//                            Text("Reviews").font(.headline)
-//                            ForEach(model.reviews) { review in
-//                                ReviewInfoView(review: review)
-//                            }
-//                        }
-//                        .frame(maxWidth: .infinity)
-//                        .padding()
-//                        .padding(.bottom)
-//                    }
                 }
             }
             
@@ -102,8 +87,7 @@ struct MovieDetailView: View {
             .padding(.top, 48)
             .padding(.trailing)
         }
-        .scaleEffect(scale)
-        .edgesIgnoringSafeArea(.all)
+        .edgesIgnoringSafeArea(.top)
         .task {
             do {
                 try await model.fetchData()

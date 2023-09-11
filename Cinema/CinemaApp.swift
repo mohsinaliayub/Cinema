@@ -10,10 +10,9 @@ import SwiftUI
 @main
 struct CinemaApp: App {
     private let tmdb: TMDB = TMDBService()
-    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(tmdb: tmdb)
                 .environmentObject(DashboardViewModel(tmdb: tmdb))
                 .environmentObject(ExploreMoviesViewModel(tmdb: tmdb))
         }
