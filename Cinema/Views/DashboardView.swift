@@ -18,7 +18,7 @@ struct DashboardView: View {
         ZStack {
             ScrollView(showsIndicators: false) {
                 ForEach(model.popularMovies) { media in
-                    mediaCard(media)
+                    MediaCard(media: media, showDetail: $showDetail, genres: model.fetchGenres(for: media), animation: animation)
                         .onTapGesture {
                             withAnimation(.interactiveSpring(response: 0.5, dampingFraction: 0.8, blendDuration: 0.8)) {
                                 selectedMedia = media; showDetail = true
@@ -43,9 +43,15 @@ struct DashboardView: View {
             }
         }
     }
+}
+
+struct MediaCard: View {
+    let media: Media
+    @Binding var showDetail: Bool
+    var genres: [Genre]
+    var animation: Namespace.ID
     
-    @ViewBuilder
-    func mediaCard(_ media: Media) -> some View {
+    var body: some View {
         ZStack {
             if !showDetail {
                 ZStack(alignment: .topLeading) {
@@ -57,7 +63,7 @@ struct DashboardView: View {
                         }
                     VStack {
                         HStack {
-                            TextWithCircleOverlay(text: "\(media.imdbRating)")
+                            TextWithCircleOverlay(text: String(format: "%.1f", media.imdbRating))
                                 .matchedGeometryEffect(id: "\(media.id)RATING", in: animation)
                             Spacer()
                         }
@@ -71,7 +77,7 @@ struct DashboardView: View {
                         }
                         .padding(.top, 48)
                         Spacer()
-                        GenresView(genres: model.fetchGenres(for: media))
+                        GenresView(genres: genres)
                             .padding(.leading, 8)
                     }
                     .foregroundStyle(.white)

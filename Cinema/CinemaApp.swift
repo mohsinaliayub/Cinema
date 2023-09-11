@@ -15,6 +15,7 @@ struct CinemaApp: App {
         WindowGroup {
             ContentView()
                 .environmentObject(DashboardViewModel(tmdb: tmdb))
+                .environmentObject(ExploreMoviesViewModel(tmdb: tmdb))
         }
     }
 }
