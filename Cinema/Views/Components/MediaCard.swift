@@ -41,7 +41,7 @@ struct MediaCard: View {
                         }
                         .padding(.top, 48)
                         Spacer()
-                        GenresView(genres: genres)
+                        GenresView(genres: fetchGenres(for: media))
                             .padding(.leading, 8)
                     }
                     .foregroundStyle(.white)
@@ -51,5 +51,21 @@ struct MediaCard: View {
         }
         .frame(width: 340, height: 450)
         .cornerRadius(15)
+    }
+    
+    func fetchGenres(for media: Media) -> [Genre] {
+        guard !genres.isEmpty else { return [] }
+        
+        var genres = [Genre]()
+        media.genreIds.forEach { genreId in
+            if let genre = fetchGenre(byId: genreId) {
+                genres.append(genre)
+            }
+        }
+        return genres
+    }
+    
+    private func fetchGenre(byId id: Int) -> Genre? {
+        genres.first { $0.id == id }
     }
 }

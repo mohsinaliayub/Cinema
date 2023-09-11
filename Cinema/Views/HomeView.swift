@@ -10,7 +10,7 @@ import SwiftUI
 struct HomeView: View {
     @EnvironmentObject var model: HomeViewModel
     @State private var showDetail = false
-    @State private var selectedMedia: Media?
+    @State private var selectedMovie: Media?
     @Namespace var animation
     
     @State private var offsetY: CGFloat = 0
@@ -21,24 +21,40 @@ struct HomeView: View {
                 ScrollView(showsIndicators: false) {
                     VStack {
                         VStack {
+                            HStack {
+                                Text("Movies").font(.title2.bold())
+                                Spacer()
+                                Button {
+                                    
+                                } label: {
+                                    Image("tune")
+                                        .resizable()
+                                        .frame(width: 25, height: 25)
+                                        .tint(AppColors.selectedToggle)
+                                }
+
+                            }
                             headerView
-                                .background(Color.white)
-                                .padding(.horizontal, 8)
                         }
-                        .zIndex(1)
+                        
+                        .padding(.bottom)
+                        .padding(.horizontal, 24)
+                        .background(Color.white)
                         .offset(y: -offsetY)
+                        .zIndex(1)
                         
                         VStack(spacing: 16) {
                             ForEach(model.movies) { movie in
-                                MediaCard(media: movie, showDetail: $showDetail, genres: [], animation: animation)
+                                MediaCard(media: movie, showDetail: $showDetail, genres: model.genres, animation: animation)
                                     .onTapGesture {
                                         withAnimation(.easeInOut) {
-                                            selectedMedia = movie; showDetail = true
+                                            selectedMovie = movie; showDetail = true
                                         }
                                     }
                             }
                         }
                         .padding(.top)
+                        .redacted(if: model.fetching)
                     }
                     .offset(coordinateSpace: .named("SCROLL")) { value in
                         offsetY = value
@@ -49,9 +65,18 @@ struct HomeView: View {
                 .padding(.top)
                 .opacity(showDetail ? 0 : 1)
                 
-                if let selectedMedia, showDetail {
-                    MovieDetailView(movie: selectedMedia, showDetail: $showDetail, animation: animation)
-                        .environmentObject(MovieDetailViewModel(movie: selectedMedia, tmdb: model.tmdb))
+                if let selectedMovie, showDetail {
+                    MovieDetailView(movie: selectedMovie, showDetail: $showDetail, animation: animation)
+                        .environmentObject(MovieDetailViewModel(movie: selectedMovie, tmdb: model.tmdb))
+                }
+            }
+            .onChange(of: model.selectedResult) { value in
+                Task {
+                    do {
+                        try await model.fetchData()
+                    } catch {
+                        print(error.localizedDescription)
+                    }
                 }
             }
             .task {
@@ -92,7 +117,6 @@ struct HomeView: View {
             }
         }
         .frame(height: 50)
-        .padding(.horizontal)
         .zIndex(1)
     }
     

@@ -82,7 +82,7 @@ public class TMDBService: TMDB {
         let type: String
         switch movieType {
         case .nowPlaying: type = "now_playing"
-        case .upcoming: type = "upcoming"
+        case .topRated: type = "top_rated"
         }
         
         let url = url(with: "/movie/\(type)")?.url

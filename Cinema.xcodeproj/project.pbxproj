@@ -46,6 +46,7 @@
 		684A129B2AAF237D00F5500F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684A129A2AAF237D00F5500F /* HomeView.swift */; };
 		684A129D2AAF239700F5500F /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684A129C2AAF239700F5500F /* HomeViewModel.swift */; };
 		684A129F2AAF346E00F5500F /* MovieResultType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684A129E2AAF346E00F5500F /* MovieResultType.swift */; };
+		684A12A12AAF464000F5500F /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684A12A02AAF464000F5500F /* View+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -87,6 +88,7 @@
 		684A129A2AAF237D00F5500F /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		684A129C2AAF239700F5500F /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		684A129E2AAF346E00F5500F /* MovieResultType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieResultType.swift; sourceTree = "<group>"; };
+		684A12A02AAF464000F5500F /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +187,7 @@
 			children = (
 				684A123E2AA9C8AB00F5500F /* Date+Extensions.swift */,
 				684A12432AA9CA4900F5500F /* URL+Extensions.swift */,
+				684A12A02AAF464000F5500F /* View+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -362,6 +365,7 @@
 				684A12802AAB361900F5500F /* CastView.swift in Sources */,
 				684A12952AAEF47200F5500F /* OffsetKey.swift in Sources */,
 				684A122D2AA9C80100F5500F /* CinemaApp.swift in Sources */,
+				684A12A12AAF464000F5500F /* View+Extensions.swift in Sources */,
 				684A12832AAB3B1100F5500F /* Review.swift in Sources */,
 				684A12462AA9CF7E00F5500F /* Media.swift in Sources */,
 				684A12512AA9D1E800F5500F /* NetworkRequestError.swift in Sources */,

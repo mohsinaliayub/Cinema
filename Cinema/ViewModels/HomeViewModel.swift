@@ -8,9 +8,10 @@
 import Foundation
 
 class HomeViewModel: ObservableObject {
-    
+    @Published var genres: [Genre] = []
     @Published var movies: [Media]
     @Published var selectedResult: MovieResultType = .nowPlaying
+    @Published var fetching = false
     
     let tmdb: TMDB
     
@@ -20,13 +21,22 @@ class HomeViewModel: ObservableObject {
     }
     
     func fetchData() async throws {
-        let movies = try await tmdb.fetchMovies(by: selectedResult)
+        await updateFetching(true)
+        
+        async let moviesAsync = try tmdb.fetchMovies(by: selectedResult)
+        async let genresAsync = try tmdb.fetchGenres()
+        
+        let (movies, genres) = try await (moviesAsync, genresAsync)
         
         await MainActor.run {
             self.movies = movies
+            self.genres = genres
+            self.fetching = false
         }
     }
     
-    
-    
+    @MainActor
+    private func updateFetching(_ fetching: Bool) {
+        self.fetching = fetching
+    }
 }
