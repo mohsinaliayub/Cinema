@@ -10,7 +10,7 @@ import SwiftUI
 struct SearchBarWithMovieTypeView: View {
     @Binding var searchText: String
     @Binding var showSearchBar: Bool
-    @Binding var activeTab: MovieType?
+    @Binding var activeTab: MediaResultType?
     var offsetY: CGFloat
     let topAreaInset: CGFloat
     var performSearch: () -> Void
@@ -57,7 +57,7 @@ struct SearchBarWithMovieTypeView: View {
 
             }
             HStack {
-                ForEach(MovieType.allCases, id: \.self) { type in
+                ForEach(MediaResultType.allCases, id: \.self) { type in
                     customButton(type: type) {
                         
                     }
@@ -93,7 +93,7 @@ struct SearchBarWithMovieTypeView: View {
     
     // MARK:  Custom Button with Symbol
     @ViewBuilder
-    func customButton(type: MovieType, onClick: @escaping () -> Void) -> some View {
+    func customButton(type: MediaResultType, onClick: @escaping () -> Void) -> some View {
         // Fading out sooner than navigation bar animation
         let progress = -(offsetY / 40) > 1 ? -1 : (offsetY > 0 ? 0 : (offsetY / 40))
         Button {
@@ -128,7 +128,7 @@ struct SearchBarWithMovieTypeView: View {
         }
     }
     
-    func foregroundColor(type: MovieType) -> Color {
+    func foregroundColor(type: MediaResultType) -> Color {
         withAnimation(.easeInOut) {
             activeTab == type ? .white : AppColors.castBackground.opacity(0.5)
         }
@@ -138,6 +138,6 @@ struct SearchBarWithMovieTypeView: View {
 
 struct SearchBarWithMovieTypeView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchBarWithMovieTypeView(searchText: .constant(""), showSearchBar: .constant(false), activeTab: .constant(MovieType.trending), offsetY: 0, topAreaInset: 48) { }
+        SearchBarWithMovieTypeView(searchText: .constant(""), showSearchBar: .constant(false), activeTab: .constant(MediaResultType.trending), offsetY: 0, topAreaInset: 48) { }
     }
 }

@@ -17,6 +17,7 @@ protocol TMDB {
     func fetchCast(for movieId: MediaID) async throws -> [Cast]
     func fetchReviews(for movieId: MediaID) async throws -> [Review]
     func fetchMoviesByQuery(_ query: String) async throws -> [Media]
+    func fetchMovies(by movieType: MovieResultType) async throws -> [Media]
 }
 
 public class TMDBService: TMDB {
@@ -74,6 +75,19 @@ public class TMDBService: TMDB {
         components?.addQueryItem(withName: "query", andValue: query)
         
         let mediaWithPageToQuery = try await fetchMediaResult(from: components?.url)
+        return mediaWithPageToQuery.mediaSummaries
+    }
+    
+    func fetchMovies(by movieType: MovieResultType) async throws -> [Media] {
+        let type: String
+        switch movieType {
+        case .nowPlaying: type = "now_playing"
+        case .upcoming: type = "upcoming"
+        }
+        
+        let url = url(with: "/movie/\(type)")?.url
+        
+        let mediaWithPageToQuery = try await fetchMediaResult(from: url)
         return mediaWithPageToQuery.mediaSummaries
     }
     

@@ -33,7 +33,7 @@ class ExploreMoviesViewModel: ObservableObject {
         }
     }
     
-    func fetchMoviesByType(_ type: MovieType) async throws {
+    func fetchMoviesByType(_ type: MediaResultType) async throws {
 //        movies = []
     }
     

@@ -12,9 +12,11 @@ struct CinemaApp: App {
     private let tmdb: TMDB = TMDBService()
     var body: some Scene {
         WindowGroup {
-            ContentView(tmdb: tmdb)
-                .environmentObject(DashboardViewModel(tmdb: tmdb))
-                .environmentObject(ExploreMoviesViewModel(tmdb: tmdb))
+//            ContentView(tmdb: tmdb)
+//                .environmentObject(DashboardViewModel(tmdb: tmdb))
+//                .environmentObject(ExploreMoviesViewModel(tmdb: tmdb))
+            HomeView()
+                .environmentObject(HomeViewModel(tmdb: tmdb))
         }
     }
 }

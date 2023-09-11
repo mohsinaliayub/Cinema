@@ -14,7 +14,7 @@ struct ExploreMoviesView: View {
     // MARK: Header Animation properties
     @State private var offsetY: CGFloat = 0
     @State private var showSearchBar = false
-    @State private var activeTab: MovieType?
+    @State private var activeTab: MediaResultType?
     
     var body: some View {
         GeometryReader { proxy in

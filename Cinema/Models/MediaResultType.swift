@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum MovieType: CaseIterable {
+enum MediaResultType: CaseIterable {
     case popular
     case trending
     case upcoming
